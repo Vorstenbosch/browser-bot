@@ -1,8 +1,9 @@
-import { Builder, WebDriver } from "selenium-webdriver";
+import { Builder, ITimeouts, WebDriver } from "selenium-webdriver";
 
-export default async (): Promise<WebDriver> => {
+export default async (timeouts: ITimeouts): Promise<WebDriver> => {
     // initializing chrome driver 
     const driver = new Builder().forBrowser("chrome").build()
+    await driver.manage().setTimeouts(timeouts)
 
     // maximizing chrome browser 
     driver.manage().window().maximize()

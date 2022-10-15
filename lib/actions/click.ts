@@ -1,6 +1,7 @@
-import { WebDriver } from "selenium-webdriver";
-import locator from "../selector"
+import { WebDriver, By } from "selenium-webdriver";
+import getElement from "./utils/element"
 
 export default async (driver: WebDriver, xpath: string) => {
-    await driver.findElement(locator(xpath)).click()
+    const e = await getElement(driver, xpath)
+    await e.click()
 }

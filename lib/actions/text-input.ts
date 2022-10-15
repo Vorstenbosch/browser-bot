@@ -1,8 +1,6 @@
-import { WebDriver } from "selenium-webdriver";
-import locator from "../selector"
+import { WebDriver, By } from "selenium-webdriver";
 
 export default async (driver: WebDriver, xpath: string, text: string) => {
-    driver.findElement(locator(xpath)).then(e => {
-        e.sendKeys(text)
-    })
+   const element = await driver.findElement(By.xpath(xpath))
+    element.sendKeys(text)
 }
