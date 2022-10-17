@@ -40,9 +40,7 @@ export default async (driver: WebDriver, flow: Flow): Promise<FlowResult> => {
                     throw Error(`unsupported action type '${action.type}' received`)
             }
         } catch (e) {
-            if (action.allowedToFail) {
-                console.info(`action '${i}' of type '${action.type}' with parameters '${JSON.stringify(action.parameters)}' failed due to '${e}' but was allowed to do so`)
-            } else {
+            if (!action.allowedToFail) {
                 error = `action '${i}' of type '${action.type}' with parameters '${JSON.stringify(action.parameters)}' failed due to '${e}'`
             }
         }
