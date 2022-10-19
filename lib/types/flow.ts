@@ -1,13 +1,12 @@
-import { Action } from "./../types/action"
+import { Action, ActionResult } from "./../types/action";
 
 export type Flow = {
-    name: string
-    actions: Action[]
-}
+  name: string;
+  actions: Action[];
+};
 
 export type FlowResult = {
-    name: string
-    success: boolean
-    data: {[key: string]: string}
-    error?: any
-}
+  name: string;
+  success: boolean;
+  actionResults: ActionResult[];
+};

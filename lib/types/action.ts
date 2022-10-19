@@ -1,28 +1,52 @@
 export type Action = {
-    type: ActionType,
-    parameters?: ElementParameters | NavigationParameters | SendKeysParameters | GetDataParameters
-    allowedToFail?: boolean
-}
+  type: ActionType;
+  parameters: ActionParameters;
+  allowedToFail?: boolean;
+};
 
 export type ActionResult = {
-    data?: string,
-    exists?: boolean
-}
+  action: Action;
+  error?: string;
+  data: ResultData;
+  continue: boolean;
+};
+
+export type ResultData = {} | ElementText | ElementExists | ElemenImage;
+
+export type ElementText = {
+  textFound: string;
+};
+
+export type ElemenImage = {
+  image: any;
+};
+
+export type ElementExists = {
+  exists: boolean;
+};
+
+export type ActionParameters =
+  | ElementParameters
+  | NavigationParameters
+  | SendKeysParameters;
 
 export type ElementParameters = {
-    xpath: string,
-}
+  xpath: string;
+};
 
 export type NavigationParameters = {
-    url: string
-}
+  url: string;
+};
 
 export type SendKeysParameters = {
-    text: string
-}
+  keys: string;
+} & ElementParameters;
 
-export type GetDataParameters = {
-    dataKey: string
-}
-
-export type ActionType = "CLICK" | "NAVIGATE" | "TEXT_INPUT" | "GET_DATA" | "CLOSE" | "EXISTS"
+export type ActionType =
+  | "CLICK"
+  | "NAVIGATE"
+  | "TEXT_INPUT"
+  | "GET_DATA"
+  | "CLOSE"
+  | "EXISTS"
+  | "IMAGE";
