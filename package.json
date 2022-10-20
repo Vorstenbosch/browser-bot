@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "npx prettier --check lib/",
-    "lint:fix": "npx prettier --write lib/"
+    "lint:fix": "npx prettier --write lib/",
+    "prepack": "babel --out-dir dist src --extensions '.ts,.tsx'"
   },
   "author": "",
   "license": "ISC"
