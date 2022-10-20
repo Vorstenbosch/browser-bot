@@ -1,8 +1,7 @@
 {
   "name": "browser-bot",
   "version": "1.0.0",
-  "description": "general brpwser bot that can be configured with a config file",
-  "main": "index.js",
+  "description": "general browser bot that can be configured with a config file",
   "dependencies": {
     "selenium-webdriver": "^4.4.0",
     "typescript": "^4.8.3"
