@@ -15,6 +15,7 @@ import {
   SendKeysParameters,
 } from "./types/action";
 import exists from "./actions/element-exists";
+import image from "./actions/image";
 
 export default async (driver: WebDriver, flow: Flow): Promise<FlowResult> => {
   const flowResult: FlowResult = {
@@ -65,7 +66,7 @@ export default async (driver: WebDriver, flow: Flow): Promise<FlowResult> => {
           );
           break;
         case "IMAGE":
-          (actionResult.data as ElementImage).image = await exists(
+          (actionResult.data as ElementImage).image = await image(
             driver,
             (action.parameters as ElementParameters).xpath
           );
