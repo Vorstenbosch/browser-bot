@@ -18,7 +18,7 @@ export type ElementText = {
 };
 
 export type ElementImage = {
-  image: any;
+  image: string;
 };
 
 export type ElementExists = {
