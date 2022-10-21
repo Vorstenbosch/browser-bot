@@ -28,7 +28,8 @@ export type ElementExists = {
 export type ActionParameters =
   | ElementParameters
   | NavigationParameters
-  | SendKeysParameters;
+  | SendKeysParameters
+  | null
 
 export type ElementParameters = {
   xpath: string;
