@@ -11,13 +11,13 @@ export type ActionResult = {
   continue: boolean;
 };
 
-export type ResultData = {} | ElementText | ElementExists | ElemenImage;
+export type ResultData = {} | ElementText | ElementExists | ElementImage;
 
 export type ElementText = {
   textFound: string;
 };
 
-export type ElemenImage = {
+export type ElementImage = {
   image: any;
 };
 

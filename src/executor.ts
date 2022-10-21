@@ -8,6 +8,7 @@ import { FlowResult, Flow } from "./types/flow";
 import {
   ActionResult,
   ElementExists,
+  ElementImage,
   ElementParameters,
   ElementText,
   NavigationParameters,
@@ -59,6 +60,12 @@ export default async (driver: WebDriver, flow: Flow): Promise<FlowResult> => {
           break;
         case "EXISTS":
           (actionResult.data as ElementExists).exists = await exists(
+            driver,
+            (action.parameters as ElementParameters).xpath
+          );
+          break;
+        case "IMAGE":
+          (actionResult.data as ElementImage).image = await exists(
             driver,
             (action.parameters as ElementParameters).xpath
           );

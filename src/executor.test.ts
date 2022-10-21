@@ -44,6 +44,54 @@ describe("execute flow", () => {
     });
   });
 
+  test("executes 'GET_DATA' flow", async () => {
+    // Given
+    const flow: Flow = {
+      name: "test",
+      actions: [
+        {
+          type: "GET_DATA",
+          parameters: {
+            xpath: "//div",
+          },
+        },
+      ],
+    };
+
+    const driver = {
+      findElement: jest.fn().mockImplementation(() => {
+        return {
+          getText: jest.fn().mockImplementation(() => {
+            return 'testText'
+          })
+        }
+      }),
+    } as unknown as WebDriver;
+
+    // when
+    const flowResult = await executor(driver, flow);
+
+    // then
+    expect(flowResult).toStrictEqual({
+      success: true,
+      name: "test",
+      actionResults: [
+        {
+          action: {
+            type: "GET_DATA",
+            parameters: {
+              xpath: "//div",
+            },
+          },
+          continue: true,
+          data: {
+            textFound: 'testText'
+          },
+        },
+      ],
+    });
+  });
+
   test("fail to execute flow", async () => {
     // Given
     const flow: Flow = {
