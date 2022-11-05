@@ -7,6 +7,7 @@ import close from "./actions/close-browser";
 import { FlowResult, Flow } from "./types/flow";
 import {
   ActionResult,
+  DoOnAllParameters,
   ElementExists,
   ElementImage,
   ElementParameters,
@@ -17,6 +18,7 @@ import {
 } from "./types/action";
 import exists from "./actions/element-exists";
 import image from "./actions/image";
+import doOnAll from "./actions/do-on-all";
 
 export default async (driver: WebDriver, flow: Flow): Promise<FlowResult> => {
   const flowResult: FlowResult = {
@@ -71,6 +73,13 @@ export default async (driver: WebDriver, flow: Flow): Promise<FlowResult> => {
           (actionResult.data as ElementImage).image = await image(
             driver,
             (action.parameters as ElementParameters).xpath
+          );
+          break;
+        case "DO_ON_ALL":
+          await doOnAll(
+            driver,
+            (action.parameters as ElementParameters).xpath,
+            (action.parameters as DoOnAllParameters).action,
           );
           break;
         default:

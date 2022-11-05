@@ -16,7 +16,7 @@ export type ActionResult = {
 export type ResultData = {} | ElementText | ElementExists | ElementImage;
 
 export type DoOnAllParameters = {
-  action: (element: WebElement) => Promise<void>;
+  action: (element: WebElement) => Promise<boolean>;
 };
 
 export type ElementText = {
