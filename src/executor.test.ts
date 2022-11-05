@@ -44,7 +44,7 @@ describe("execute flow", () => {
     });
   });
 
-  test("executes 'GET_DATA' flow", async () => {
+  test("executes 'GET_DATA' flow without parameter", async () => {
     // Given
     const flow: Flow = {
       name: "test",
@@ -62,9 +62,9 @@ describe("execute flow", () => {
       findElement: jest.fn().mockImplementation(() => {
         return {
           getText: jest.fn().mockImplementation(() => {
-            return 'testText'
-          })
-        }
+            return "testText";
+          }),
+        };
       }),
     } as unknown as WebDriver;
 
@@ -85,7 +85,57 @@ describe("execute flow", () => {
           },
           continue: true,
           data: {
-            textFound: 'testText'
+            textFound: "testText",
+          },
+        },
+      ],
+    });
+  });
+
+  test("executes 'GET_DATA' flow to get title attribute", async () => {
+    // Given
+    const flow: Flow = {
+      name: "test",
+      actions: [
+        {
+          type: "GET_DATA",
+          parameters: {
+            xpath: "//div",
+            attribute: "title",
+          },
+        },
+      ],
+    };
+
+    const driver = {
+      findElement: jest.fn().mockImplementation(() => {
+        return {
+          getAttribute: jest.fn().mockImplementation(() => {
+            return "testTitle";
+          }),
+        };
+      }),
+    } as unknown as WebDriver;
+
+    // when
+    const flowResult = await executor(driver, flow);
+
+    // then
+    expect(flowResult).toStrictEqual({
+      success: true,
+      name: "test",
+      actionResults: [
+        {
+          action: {
+            type: "GET_DATA",
+            parameters: {
+              xpath: "//div",
+              attribute: "title",
+            },
+          },
+          continue: true,
+          data: {
+            textFound: "testTitle",
           },
         },
       ],

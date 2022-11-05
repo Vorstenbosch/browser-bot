@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "jest",
-    "lint:fix": "npx prettier --write lib/",
+    "lint:fix": "npx prettier --write src/",
     "build": "tsc",
     "prepare": "npm run build"
   },

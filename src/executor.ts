@@ -11,6 +11,7 @@ import {
   ElementImage,
   ElementParameters,
   ElementText,
+  GetDataParameters,
   NavigationParameters,
   SendKeysParameters,
 } from "./types/action";
@@ -43,7 +44,8 @@ export default async (driver: WebDriver, flow: Flow): Promise<FlowResult> => {
         case "GET_DATA":
           (actionResult.data as ElementText).textFound = await getData(
             driver,
-            (action.parameters as ElementParameters).xpath
+            (action.parameters as ElementParameters).xpath,
+            (action.parameters as GetDataParameters).attribute
           );
           break;
         case "NAVIGATE":

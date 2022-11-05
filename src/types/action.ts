@@ -1,3 +1,5 @@
+import { WebElement } from "selenium-webdriver";
+
 export type Action = {
   type: ActionType;
   parameters: ActionParameters;
@@ -12,6 +14,10 @@ export type ActionResult = {
 };
 
 export type ResultData = {} | ElementText | ElementExists | ElementImage;
+
+export type DoOnAllParameters = {
+  action: (element: WebElement) => Promise<void>;
+};
 
 export type ElementText = {
   textFound: string;
@@ -29,7 +35,9 @@ export type ActionParameters =
   | ElementParameters
   | NavigationParameters
   | SendKeysParameters
-  | null
+  | GetDataParameters
+  | DoOnAllParameters
+  | null;
 
 export type ElementParameters = {
   xpath: string;
@@ -37,6 +45,10 @@ export type ElementParameters = {
 
 export type NavigationParameters = {
   url: string;
+};
+
+export type GetDataParameters = {
+  attribute: string;
 };
 
 export type SendKeysParameters = {
@@ -50,4 +62,5 @@ export type ActionType =
   | "GET_DATA"
   | "CLOSE"
   | "EXISTS"
-  | "IMAGE";
+  | "IMAGE"
+  | "DO_ON_ALL";

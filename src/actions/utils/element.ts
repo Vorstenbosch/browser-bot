@@ -1,6 +1,6 @@
 import { WebDriver, By, WebElement, until } from "selenium-webdriver";
 
-export default async (
+export const findClickableElement = async (
   driver: WebDriver,
   xpath: string
 ): Promise<WebElement> => {
