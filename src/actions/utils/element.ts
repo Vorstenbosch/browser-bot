@@ -16,7 +16,7 @@ export const findClickableElement = async (
   return e;
 };
 
-const scrollToElement = async (driver: WebDriver, element: WebElement) => {
+export const scrollToElement = async (driver: WebDriver, element: WebElement) => {
   await driver.executeScript("arguments[0].scrollIntoView()", element);
   await driver.sleep(300);
 };
