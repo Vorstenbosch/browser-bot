@@ -1,4 +1,4 @@
-import { WebElement } from "selenium-webdriver";
+import { WebDriver, WebElement } from "selenium-webdriver";
 
 export type Action = {
   type: ActionType;
@@ -16,7 +16,7 @@ export type ActionResult = {
 export type ResultData = {} | ElementText | ElementExists | ElementImage;
 
 export type DoOnAllParameters = {
-  action: (element: WebElement) => Promise<boolean>;
+  action: (element: WebElement, driver: WebDriver) => Promise<boolean>;
 };
 
 export type ElementText = {
